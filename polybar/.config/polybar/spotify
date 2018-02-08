@@ -2,7 +2,11 @@
 if [ "$(playerctl status)" = "Playing" ]; then
   title=`exec playerctl metadata xesam:title`
   artist=`exec playerctl metadata xesam:artist`
-  echo "$artist - $title"
+  if [ -z "$artist" ]; then
+    echo "AD"
+  else
+    echo "$artist - $title"
+  fi
 else
-  echo "Music"
+  echo "Spotify Paused"
 fi
