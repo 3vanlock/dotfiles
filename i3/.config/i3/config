@@ -1,0 +1,100 @@
+# vim:filetype=i3
+# i3 config file (v4)
+
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #888888
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+
+font pango:Noto Mono 9, FontAwesome 10
+
+set $mod Mod4
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+
+for_window [class="^.*"] border pixel 0
+smart_gaps on
+gaps inner 6
+gaps outer 0
+
+workspace_auto_back_and_forth yes
+force_display_urgency_hint 0 ms
+focus_on_window_activation urgent
+
+floating_modifier $mod
+bindsym $mod+q kill
+bindsym $mod+Return exec terminator
+
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+
+bindsym $mod+Shift+Left move left 35px
+bindsym $mod+Shift+Down move down 35px
+bindsym $mod+Shift+Up move up 35px
+bindsym $mod+Shift+Right move right 35px
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen
+bindsym $mod+g fullscreen global
+
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+Tab workspace back_and_forth
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+plus scratchpad show
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+n exec --no-startup-id nautilus
+
+set $mode_resize resize
+bindsym $mod+r mode "$mode_resize"
+mode "$mode_resize" {
+    bindsym Left resize shrink width 10 px or 1 ppt
+    bindsym Down resize grow height 10 px or 1 ppt
+    bindsym Up resize shrink height 10 px or 1 ppt
+    bindsym Right resize grow width 10 px or 1 ppt
+
+    bindsym Shift+Left resize shrink width 20 px or 5 ppt
+    bindsym Shift+Down resize grow height 20 px or 5 ppt
+    bindsym Shift+Up resize shrink height 20 px or 5 ppt
+    bindsym Shift+Right resize grow width 20 px or 5 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+for_window [class="(?i)nm-connection-editor"] floating enable
+for_window [instance="__scratchpad"] floating enable
+for_window [instance="__nmtui"] floating enable
+
+exec --no-startup-id "nitrogen --restore"
+exec_always --no-startup-id "~/.pyenv/shims/wal -R"
+exec_always --no-startup-id "~/.config/polybar/launch.sh"

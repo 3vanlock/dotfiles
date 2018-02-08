@@ -1,0 +1,197 @@
+[colors]
+
+; Define System colors from .Xresources
+bg=${xrdb:color0:#ffffff}
+c1=${xrdb:color1:#ffffff}
+c2=${xrdb:color2:#ffffff}
+c3=${xrdb:color3:#ffffff}
+c4=${xrdb:color4:#ffffff}
+c5=${xrdb:color5:#ffffff}
+c6=${xrdb:color6:#ffffff}
+fg=${xrdb:color7:#ffffff}
+
+; Define colors for each module
+; Easier to change here for each module
+
+obbg=${self.fg}
+obibg=${self.fg}
+cpubg=${self.fg}
+winbg=${self.fg}
+netbg=${self.fg}
+volbg=${self.fg}
+batbg=${self.fg}
+malbg=${self.fg}
+datbg=${self.fg}
+membg=${self.fg}
+
+obfg=${self.bg}
+obifg=${self.bg}
+cpufg=${self.bg}
+winfg=${self.bg}
+netfg=${self.bg}
+volfg=${self.bg}
+batfg=${self.bg}
+malfg=${self.bg}
+datfg=${self.bg}
+memfg=${self.bg}
+
+;--------------------------------------------
+; bars                                      ;
+;--------------------------------------------
+
+[bar/base]
+width=100%
+height=14
+foreground=${colors.fg}
+background=${colors.bg}
+border-top-size=5
+border-top-color= ${colors.bg}
+border-bottom-size=5
+border-bottom-color= ${colors.bg}
+bottom=True
+padding-left=1
+padding-right=0
+module-margin-left=0
+module-margin-right=0
+font-N=<fontconfig pattern>;<vertical offset>
+font-0=Noto Mono for Powerline:size=9;2
+
+[bar/litel]
+inherit=bar/base
+tray-position= right
+tray-padding = 3
+monitor=HDMI-0
+modules-left= date padding xwindow
+modules-center= i3
+modules-right= spotify padding memory padding cpu padding temp padding network padding volume padding
+
+[bar/liter]
+inherit=bar/base
+monitor=HDMI-1
+modules-left= date padding xwindow
+modules-center= i3
+modules-right= spotify padding memory padding cpu padding temp padding network padding volume padding
+
+;--------------------------------------------
+; modules                                   ;
+;--------------------------------------------
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/spotify
+interval = 2
+label-foreground = ${colors.bg}
+label-background = ${colors.fg}
+label-padding=1
+click-left = zsh -c "playerctl play-pause"
+click-middle = zsh -c "playerctl previous"
+click-right = zsh -c "playerctl next"
+
+[module/i3]
+type = internal/i3
+strip-wsnumbers = true
+index-sort = true
+pin-workspaces = true
+label-focused = %name%
+label-focused-foreground = ${colors.bg}
+label-focused-background = ${colors.fg}
+label-focused-padding = 1
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.fg}
+label-unfocused-background = ${colors.bg}
+label-unfocused-padding = 1
+label-visible = %name%
+label-visible-padding = 1
+label-separator = |
+label-separator-padding = 2
+
+[module/xwindow]
+type=internal/xwindow
+label=%title:0:100:...%
+label-padding=1
+label-foreground=${colors.winfg}
+label-background=${colors.winbg}
+
+[module/temp]
+type = internal/temperature
+interval = 1
+format = <label>
+label = TEMP %temperature%
+label-background = ${colors.fg}
+label-foreground = ${colors.bg}
+label-padding = 1
+format-warn = <label-warn>
+label-warn = TEMP %temperature%
+label-warn-foreground = ${colors.fg}
+label-warn-background = ${colors.bg}
+
+[module/date]
+type=internal/date
+interval=1.0
+date=%a, %b %d
+time=%I:%M %p
+label=%date% %time%
+format=<label>
+format-padding=0
+label-background=${colors.datbg}
+label-foreground=${colors.datfg}
+label-padding= 1
+
+[module/volume]
+type=internal/volume
+format-volume =<label-volume>
+format-muted =<label-muted>
+ramp-volume-background=${colors.volbg}
+ramp-volume-foreground=${colors.volfg}
+ramp-volume-padding=1
+label-volume=%percentage%
+label-volume-background=${colors.volbg}
+label-volume-foreground=${colors.volfg}
+label-volume-padding=1
+label-muted=0
+label-muted-foreground=${colors.volfg}
+label-muted-background=${colors.volbg}
+label-muted-padding=1
+format-volume-padding=0
+format-muted-padding=0
+ramp-headphones-0=
+
+[module/cpu]
+type=internal/cpu
+interval=0.5
+format=<label>
+label=CPU %percentage%%
+label-background=${colors.cpubg}
+label-foreground=${colors.cpufg}
+label-padding=1
+
+[module/memory]
+type = internal/memory
+interval = 3
+label-background=${colors.membg}
+label-foreground=${colors.memfg}
+format = <label>
+label = RAM %gb_used%/%gb_free%
+label-padding=1
+
+[module/network]
+type=internal/network
+interface=enp4s0
+interval=3.0
+format-connected=<label-connected>
+label-connected=%local_ip%
+label-connected-background=${colors.netbg}
+label-connected-foreground=${colors.netfg}
+label-connected-padding=1
+format-disconnected=<label-disconnected>
+label-disconnected-background=${colors.netbg}
+label-disconnected-foreground=${colors.netfg}
+label-disconnected-padding=1
+label-disconnected=DISCONNECTED
+
+[module/padding]
+type=custom/text
+content=|
+content-foreground=${colors.bg}
+content-background=${colors.bg}
+
+; vim:ft=dosini
