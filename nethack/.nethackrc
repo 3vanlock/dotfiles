@@ -1,0 +1,8 @@
+OPTIONS=autodig,autoquiver
+OPTIONS=nocmdassist
+OPTIONS=color
+OPTIONS=confirm
+OPTIONS=number_pad:1
+OPTIONS=autopickup
+OPTIONS=pickup_types:$?!/(
+OPTIONS=pickup_burden:unencumbered
