@@ -3,6 +3,7 @@
 On a mission to fully automate the deployment of my personal workspace.
 
 ## About
+
 This README's primary function is to act as a scratchpad for ideas regarding the creation, organization, standardization, and deployment of these configuration files.
 
 Some things may not be inherently clear. The code is not highlighted and customization is not noted where it occurs within cloned libraries. Feel free to open issues or contact me directly with anything.
@@ -42,7 +43,7 @@ Followed [this guide](https://help.ubuntu.com/community/MuttAndGmail) to configu
 * [atom](https://atom.io/)
 * [vim](https://www.vim.org)
   * Colors via [pywal](https://github.com/dylanaraps/pywal/wiki/Customization#vim)
-  * Configuration based on [ultimate Vim config](https://github.com/amix/vimrc)
+  * Plugins handled via [vim-plug](https://github.com/junegunn/vim-plug)
 
 ### Browser
 
@@ -57,10 +58,25 @@ Followed [this guide](https://help.ubuntu.com/community/MuttAndGmail) to configu
 * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 ### Utilities
+
 * [pyenv](https://github.com/pyenv/pyenv)
 * [pipenv](https://github.com/pypa/pipenv)
 * [streamlink](https://github.com/streamlink/streamlink)
 * [vtop](https://github.com/MrRio/vtop)
+
+## Install
+
+Install by  cloning the directory to your preferred dotfiles location. [Git](https://git-scm.org) and [GNU Stow](https://www.gnu.org/software/stow/) are required
+
+Simple guide to organizing and using your dotfiles [from Brandon Invergo](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)
+
+```bash
+git clone https://github.com/elock37/dotfiles ~/.dotfiles
+cd ~/.dotfiles
+stow */
+```
+
+You can selectively `stow` any directory you plan to use or use all configurations included via `stow */`
 
 ## To Do
 

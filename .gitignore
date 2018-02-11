@@ -3,8 +3,6 @@ atom/.atom/
 autodl/
 irssi/
 mozilla/.mozilla/systemextensionsdev
-mozilla/.mozilla/firefox/Crash Reports/
-mozilla/.mozilla/firefox/Pending Pings/
 mozilla/.mozilla/firefox/
 !mozilla/.mozilla/firefox/s0g43x66.default-1513995472171/chrome/
 !mozilla/.mozilla/firefox/s0g43x66.default-1513995472171/user.js
