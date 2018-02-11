@@ -11,29 +11,30 @@ c6=${xrdb:color6:#ffffff}
 fg=${xrdb:color7:#ffffff}
 
 ; Define colors for each module
-; Easier to change here for each module
 
 obbg=${self.fg}
 obibg=${self.fg}
-cpubg=${self.fg}
+cpubg=${self.bg}
 winbg=${self.fg}
-netbg=${self.fg}
+netbg=${self.c3}
 volbg=${self.fg}
 batbg=${self.fg}
 malbg=${self.fg}
-datbg=${self.fg}
-membg=${self.fg}
+datbg=${self.c3}
+membg=${self.bg}
+tempbg=${self.fg}
 
 obfg=${self.bg}
 obifg=${self.bg}
-cpufg=${self.bg}
+cpufg=${self.fg}
 winfg=${self.bg}
 netfg=${self.bg}
 volfg=${self.bg}
 batfg=${self.bg}
 malfg=${self.bg}
 datfg=${self.bg}
-memfg=${self.bg}
+memfg=${self.fg}
+tempfg=${self.bg}
 
 ;--------------------------------------------
 ; bars                                      ;
@@ -48,13 +49,12 @@ border-top-size=5
 border-top-color= ${colors.bg}
 border-bottom-size=5
 border-bottom-color= ${colors.bg}
-bottom=True
+bottom=false
 padding-left=1
 padding-right=0
 module-margin-left=0
 module-margin-right=0
-font-N=<fontconfig pattern>;<vertical offset>
-font-0=Noto Mono for Powerline:size=9;2
+font-0=Noto Mono:size=9;2
 
 [bar/litel]
 inherit=bar/base
@@ -63,14 +63,14 @@ tray-padding = 3
 monitor=HDMI-0
 modules-left= date padding xwindow
 modules-center= i3
-modules-right= spotify padding memory padding cpu padding temp padding network padding volume padding
+modules-right= padding memory padding cpu padding temp padding network padding volume padding spotify padding
 
 [bar/liter]
 inherit=bar/base
 monitor=HDMI-1
 modules-left= date padding xwindow
 modules-center= i3
-modules-right= spotify padding memory padding cpu padding temp padding network padding volume padding
+modules-right= padding memory padding cpu padding temp padding network padding volume padding spotify padding
 
 ;--------------------------------------------
 ; modules                                   ;
@@ -108,21 +108,21 @@ label-separator-padding = 2
 type=internal/xwindow
 label=%title:0:100:...%
 label-padding=1
-label-foreground=${colors.winfg}
-label-background=${colors.winbg}
+label-foreground=${colors.winbg}
+label-background=${colors.winfg}
 
 [module/temp]
 type = internal/temperature
 interval = 1
 format = <label>
 label = TEMP %temperature%
-label-background = ${colors.fg}
-label-foreground = ${colors.bg}
+label-background = ${colors.tempfg}
+label-foreground = ${colors.tempbg}
 label-padding = 1
 format-warn = <label-warn>
 label-warn = TEMP %temperature%
 label-warn-foreground = ${colors.fg}
-label-warn-background = ${colors.bg}
+label-warn-background = ${colors.c1}
 
 [module/date]
 type=internal/date
@@ -140,20 +140,14 @@ label-padding= 1
 type=internal/volume
 format-volume =<label-volume>
 format-muted =<label-muted>
-ramp-volume-background=${colors.volbg}
-ramp-volume-foreground=${colors.volfg}
-ramp-volume-padding=1
 label-volume=%percentage%
 label-volume-background=${colors.volbg}
 label-volume-foreground=${colors.volfg}
 label-volume-padding=1
-label-muted=0
-label-muted-foreground=${colors.volfg}
-label-muted-background=${colors.volbg}
+label-muted=%percentage%
+label-muted-foreground=${colors.c1}
+label-muted-background=${colors.c1}
 label-muted-padding=1
-format-volume-padding=0
-format-muted-padding=0
-ramp-headphones-0=
 
 [module/cpu]
 type=internal/cpu
@@ -179,14 +173,14 @@ interface=enp4s0
 interval=3.0
 format-connected=<label-connected>
 label-connected=%local_ip%
-label-connected-background=${colors.netbg}
-label-connected-foreground=${colors.netfg}
+label-connected-background=${colors.netfg}
+label-connected-foreground=${colors.netbg}
 label-connected-padding=1
 format-disconnected=<label-disconnected>
-label-disconnected-background=${colors.netbg}
-label-disconnected-foreground=${colors.netfg}
+label-disconnected-background=${colors.netfg}
+label-disconnected-foreground=${colors.c1}
 label-disconnected-padding=1
-label-disconnected=DISCONNECTED
+label-disconnected=*x*x*
 
 [module/padding]
 type=custom/text
