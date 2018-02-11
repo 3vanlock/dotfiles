@@ -13,4 +13,4 @@ msmtp/
 neofetch/
 oh-my-zsh/
 oomox/
-vim/.vim_runtime/
+vim/.vim/plugged
