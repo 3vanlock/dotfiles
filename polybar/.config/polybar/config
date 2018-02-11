@@ -1,5 +1,4 @@
 [colors]
-
 ; Define System colors from .Xresources
 bg=${xrdb:color0:#ffffff}
 c1=${xrdb:color1:#ffffff}
@@ -11,7 +10,6 @@ c6=${xrdb:color6:#ffffff}
 fg=${xrdb:color7:#ffffff}
 
 ; Define colors for each module
-
 obbg=${self.fg}
 obibg=${self.fg}
 cpubg=${self.bg}
@@ -39,15 +37,14 @@ tempfg=${self.bg}
 ;--------------------------------------------
 ; bars                                      ;
 ;--------------------------------------------
-
 [bar/base]
 width=100%
 height=14
 foreground=${colors.fg}
 background=${colors.bg}
-border-top-size=5
+border-top-size=3
 border-top-color= ${colors.bg}
-border-bottom-size=5
+border-bottom-size=3
 border-bottom-color= ${colors.bg}
 bottom=false
 padding-left=1
@@ -55,6 +52,7 @@ padding-right=0
 module-margin-left=0
 module-margin-right=0
 font-0=Noto Mono:size=9;2
+font-1=FontAwesome:pixelsize=10;2
 
 [bar/litel]
 inherit=bar/base
@@ -63,14 +61,14 @@ tray-padding = 3
 monitor=HDMI-0
 modules-left= date padding xwindow
 modules-center= i3
-modules-right= padding memory padding cpu padding temp padding network padding volume padding spotify padding
+modules-right=padding filesystem padding memory padding cpu padding temp padding network padding pulse padding spotify padding
 
 [bar/liter]
 inherit=bar/base
 monitor=HDMI-1
 modules-left= date padding xwindow
 modules-center= i3
-modules-right= padding memory padding cpu padding temp padding network padding volume padding spotify padding
+modules-right=padding filesystem padding memory padding cpu padding temp padding network padding pulse padding spotify padding
 
 ;--------------------------------------------
 ; modules                                   ;
@@ -88,21 +86,30 @@ click-right = zsh -c "playerctl next"
 
 [module/i3]
 type = internal/i3
-strip-wsnumbers = true
-index-sort = true
 pin-workspaces = true
-label-focused = %name%
+format = <label-state> <label-mode>
+label-focused = %icon%
 label-focused-foreground = ${colors.bg}
-label-focused-background = ${colors.fg}
+label-focused-background =  ${colors.c1}
+label-focused-underline = #ffffff
 label-focused-padding = 1
-label-unfocused = %name%
+label-unfocused = %icon%
+label-unfocused-padding = 1
 label-unfocused-foreground = ${colors.fg}
 label-unfocused-background = ${colors.bg}
-label-unfocused-padding = 1
-label-visible = %name%
+label-visible = %icon%
 label-visible-padding = 1
+label-visible-foreground = ${colors.bg}
+label-visible-background = ${colors.fg}
 label-separator = |
 label-separator-padding = 2
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-default = x
 
 [module/xwindow]
 type=internal/xwindow
@@ -114,15 +121,18 @@ label-background=${colors.winfg}
 [module/temp]
 type = internal/temperature
 interval = 1
-format = <label>
-label = TEMP %temperature%
+format = <ramp><label>
+label = %temperature%
 label-background = ${colors.tempfg}
 label-foreground = ${colors.tempbg}
 label-padding = 1
-format-warn = <label-warn>
-label-warn = TEMP %temperature%
+format-warn = <ramp><label-warn>
+label-warn = %temperature%
 label-warn-foreground = ${colors.fg}
 label-warn-background = ${colors.c1}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 
 [module/date]
 type=internal/date
@@ -140,23 +150,35 @@ label-padding= 1
 type=internal/volume
 format-volume =<label-volume>
 format-muted =<label-muted>
-label-volume=%percentage%
-label-volume-background=${colors.volbg}
-label-volume-foreground=${colors.volfg}
-label-volume-padding=1
-label-muted=%percentage%
+label-volume=%percentage%%
+label-volume-background=${colors.c1}
+label-volume-foreground=${colors.c7}
+label-muted=%percentage%%
 label-muted-foreground=${colors.c1}
 label-muted-background=${colors.c1}
-label-muted-padding=1
+
+[module/pulse]
+type = internal/pulseaudio
+sink = alsa_output.usb-Binary_Audio_UAC1_DAC-01.analog-stereo
+format-volume =<ramp-volume> <label-volume> 
+format-muted =<label-muted>
+label-volume=%percentage%
+label-volume-foreground = ${colors.fg}
+label-muted=muted
+label-muted-foreground = ${colors.fg}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-padding-left = 1
 
 [module/cpu]
 type=internal/cpu
 interval=0.5
 format=<label>
-label=CPU %percentage%%
+label= %percentage%%
 label-background=${colors.cpubg}
 label-foreground=${colors.cpufg}
-label-padding=1
+label-padding-right=1
 
 [module/memory]
 type = internal/memory
@@ -164,28 +186,35 @@ interval = 3
 label-background=${colors.membg}
 label-foreground=${colors.memfg}
 format = <label>
-label = RAM %gb_used%/%gb_free%
-label-padding=1
+label =  %gb_used%
+label-padding = 1
 
 [module/network]
 type=internal/network
 interface=enp4s0
 interval=3.0
 format-connected=<label-connected>
-label-connected=%local_ip%
+label-connected= %local_ip%
 label-connected-background=${colors.netfg}
 label-connected-foreground=${colors.netbg}
-label-connected-padding=1
 format-disconnected=<label-disconnected>
 label-disconnected-background=${colors.netfg}
 label-disconnected-foreground=${colors.c1}
 label-disconnected-padding=1
-label-disconnected=*x*x*
+label-disconnected=
+
+[module/filesystem]
+type = internal/fs
+mount-0 = /
+mount-1 = /nfs/Media
+interval = 10
+format-mounted = <label-mounted>
+label-mounted =  %mountpoint%: %free%
+label-unmounted =  %mountpoint%: 
 
 [module/padding]
 type=custom/text
 content=|
 content-foreground=${colors.bg}
 content-background=${colors.bg}
-
 ; vim:ft=dosini

@@ -2,8 +2,8 @@ atom/.atom/
 !atom/.atom/config.cson
 autodl/
 irssi/
-mozilla/.mozilla/systemextensionsdev
-mozilla/.mozilla/firefox/
+mozilla/.mozilla/
+!mozilla/.mozilla/firefox/profiles.ini
 !mozilla/.mozilla/firefox/s0g43x66.default-1513995472171/chrome/
 !mozilla/.mozilla/firefox/s0g43x66.default-1513995472171/user.js
 neofetch/
