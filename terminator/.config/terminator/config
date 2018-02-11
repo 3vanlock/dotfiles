@@ -1,7 +1,7 @@
 [global_config]
   always_split_with_profile = True
   broadcast_default = off
-  title_font = Noto Mono for Powerline 9
+  title_font = Noto Mono 9
   title_use_system_font = False
 [keybindings]
 [layouts]
