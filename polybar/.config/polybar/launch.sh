@@ -8,4 +8,5 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
 polybar litel &
+polybar litec &
 polybar liter &

@@ -10,29 +10,27 @@ c6=${xrdb:color6:#ffffff}
 fg=${xrdb:color7:#ffffff}
 
 ; Define colors for each module
-obbg=${self.fg}
-obibg=${self.fg}
 cpubg=${self.bg}
 winbg=${self.fg}
 netbg=${self.c3}
-volbg=${self.fg}
+volbg=${self.c3}
 batbg=${self.fg}
 malbg=${self.fg}
 datbg=${self.c3}
 membg=${self.bg}
-tempbg=${self.fg}
+tempbg=${self.bg}
+fsbg=${self.bg}
 
-obfg=${self.bg}
-obifg=${self.bg}
 cpufg=${self.fg}
 winfg=${self.bg}
 netfg=${self.bg}
-volfg=${self.bg}
+volfg=${self.c3}
 batfg=${self.bg}
 malfg=${self.bg}
 datfg=${self.bg}
 memfg=${self.fg}
-tempfg=${self.bg}
+tempfg=${self.fg}
+fsfg=${self.fg}
 
 ;--------------------------------------------
 ; bars                                      ;
@@ -46,7 +44,7 @@ border-top-size=3
 border-top-color= ${colors.bg}
 border-bottom-size=3
 border-bottom-color= ${colors.bg}
-bottom=false
+bottom=True
 padding-left=1
 padding-right=0
 module-margin-left=0
@@ -59,16 +57,23 @@ inherit=bar/base
 tray-position= right
 tray-padding = 3
 monitor=HDMI-0
-modules-left= date padding xwindow
+modules-left= date padding network padding xwindow
 modules-center= i3
-modules-right=padding filesystem padding memory padding cpu padding temp padding network padding pulse padding spotify padding
+modules-right=memory padding cpu padding temp padding pulse padding spotify padding
+
+[bar/litec]
+inherit=bar/base
+monitor=HDMI-1
+modules-left= date padding network padding
+modules-center= i3
+modules-right=pulse padding
 
 [bar/liter]
 inherit=bar/base
-monitor=HDMI-1
-modules-left= date padding xwindow
+monitor=DVI-D-0
+modules-left= date padding network padding xwindow
 modules-center= i3
-modules-right=padding filesystem padding memory padding cpu padding temp padding network padding pulse padding spotify padding
+modules-right=Afilesystem padding pulse padding spotify padding
 
 ;--------------------------------------------
 ; modules                                   ;
@@ -78,7 +83,7 @@ type = custom/script
 exec = ~/.config/polybar/spotify
 interval = 2
 label-foreground = ${colors.bg}
-label-background = ${colors.fg}
+label-background = ${colors.c3}
 label-padding=1
 click-left = zsh -c "playerctl play-pause"
 click-middle = zsh -c "playerctl previous"
@@ -87,11 +92,10 @@ click-right = zsh -c "playerctl next"
 [module/i3]
 type = internal/i3
 pin-workspaces = true
-format = <label-state> <label-mode>
+format = <label-state>
 label-focused = %icon%
 label-focused-foreground = ${colors.bg}
-label-focused-background =  ${colors.c1}
-label-focused-underline = #ffffff
+label-focused-background =  ${colors.c3}
 label-focused-padding = 1
 label-unfocused = %icon%
 label-unfocused-padding = 1
@@ -109,12 +113,10 @@ ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-5 = 6;
-ws-icon-default = x
 
 [module/xwindow]
 type=internal/xwindow
-label=%title:0:100:...%
-label-padding=1
+label=%title:0:80:...%
 label-foreground=${colors.winbg}
 label-background=${colors.winfg}
 
@@ -123,16 +125,17 @@ type = internal/temperature
 interval = 1
 format = <ramp><label>
 label = %temperature%
-label-background = ${colors.tempfg}
-label-foreground = ${colors.tempbg}
+label-background = ${colors.tempbg}
+label-foreground = ${colors.tempfg}
 label-padding = 1
 format-warn = <ramp><label-warn>
 label-warn = %temperature%
-label-warn-foreground = ${colors.fg}
+label-warn-foreground = ${colors.tempfg}
 label-warn-background = ${colors.c1}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
+ramp-foreground = ${colors.tempfg}
 
 [module/date]
 type=internal/date
@@ -146,30 +149,18 @@ label-background=${colors.datbg}
 label-foreground=${colors.datfg}
 label-padding= 1
 
-[module/volume]
-type=internal/volume
-format-volume =<label-volume>
-format-muted =<label-muted>
-label-volume=%percentage%%
-label-volume-background=${colors.c1}
-label-volume-foreground=${colors.c7}
-label-muted=%percentage%%
-label-muted-foreground=${colors.c1}
-label-muted-background=${colors.c1}
-
 [module/pulse]
 type = internal/pulseaudio
 sink = alsa_output.usb-Binary_Audio_UAC1_DAC-01.analog-stereo
-format-volume =<ramp-volume> <label-volume> 
+format-volume =<label-volume> <ramp-volume>
 format-muted =<label-muted>
 label-volume=%percentage%
-label-volume-foreground = ${colors.fg}
+label-volume-foreground = ${colors.volfg}
 label-muted=muted
-label-muted-foreground = ${colors.fg}
+label-muted-foreground = ${colors.volfg}
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-ramp-volume-padding-left = 1
 
 [module/cpu]
 type=internal/cpu
@@ -210,6 +201,8 @@ mount-1 = /nfs/Media
 interval = 10
 format-mounted = <label-mounted>
 label-mounted =  %mountpoint%: %free%
+label-mounted-foreground = ${colors.fsfg}
+label-mounted-background = ${colors.fsbg}
 label-unmounted =  %mountpoint%: 
 
 [module/padding]
