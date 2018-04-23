@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+url="https://www.reddit.com/message/unread/.json?feed=b6ca51e2b6537340f2d95db101969d1536066acc&user=RevReturns"
+unread=$(curl -sf "$url" | jq '.["data"]["children"] | length')
+
+if [ "$unread" -gt 0 ]; then
+   echo " $unread"
+else
+   echo ""
+fi

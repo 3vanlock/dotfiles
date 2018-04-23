@@ -16,6 +16,7 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
+set $ws7 "7"
 
 for_window [class="^.*"] border pixel 0
 smart_gaps on
@@ -61,6 +62,7 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
 bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+minus move scratchpad
@@ -72,6 +74,7 @@ bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -93,18 +96,6 @@ mode "$mode_resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-for_window [class="(?i)nm-connection-editor"] floating enable
-for_window [instance="__scratchpad"] floating enable
-for_window [instance="__nmtui"] floating enable
-
-assign [class="Visual Studio Code$"] 2
-assign [class="Firefox$"] 3
-assign [class="Discord"] 4
-assign [class="irssi"] 4
-assign [class="mutt"] 4
-assign [class="^Spotify$"] 5
-
 
 exec --no-startup-id "nitrogen --restore"
 exec_always --no-startup-id "~/.pyenv/shims/wal -R"

@@ -50,30 +50,30 @@ padding-right=0
 module-margin-left=0
 module-margin-right=0
 font-0=Noto Mono:size=9;2
-font-1=FontAwesome:pixelsize=10;2
+font-1=FontAwesome:pixelsize=10;3
 
-[bar/litel]
+[bar/liter]
 inherit=bar/base
 tray-position= right
 tray-padding = 3
 monitor=HDMI-0
-modules-left= date padding network padding xwindow
+modules-left= date padding network padding memory padding cpu padding temp
 modules-center= i3
-modules-right=memory padding cpu padding temp padding pulse padding spotify padding
+modules-right=pulse padding mpd padding
 
-[bar/litec]
+[bar/litel]
 inherit=bar/base
 monitor=HDMI-1
-modules-left= date padding network padding
+modules-left= date padding reddit
 modules-center= i3
 modules-right=pulse padding
 
-[bar/liter]
+[bar/litec]
 inherit=bar/base
 monitor=DVI-D-0
-modules-left= date padding network padding xwindow
+modules-left= date padding network padding filesystem 
 modules-center= i3
-modules-right=Afilesystem padding pulse padding spotify padding
+modules-right=pulse padding mpd padding utcdate padding
 
 ;--------------------------------------------
 ; modules                                   ;
@@ -89,9 +89,87 @@ click-left = zsh -c "playerctl play-pause"
 click-middle = zsh -c "playerctl previous"
 click-right = zsh -c "playerctl next"
 
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone>
+;   <icon-consume>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online = <label-time> <label-song> <icon-prev> <icon-stop> <toggle> <icon-next> 
+;format-playing = ${self.format-online}
+;format-paused = ${self.format-online}
+;format-stopped = ${self.format-online}
+
+; Available tags:
+;   <label-offline>
+;format-offline = <label-offline>
+
+; Available tokens:
+;   %artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song =  %artist% - %title%
+
+; Available tokens:
+;   %elapsed%
+;   %total%
+; Default: %elapsed% / %total%
+;label-time = %elapsed% / %total%
+
+; Available tokens:
+;   None
+label-offline = offline
+
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-seekb = 
+icon-seekf = 
+icon-random = 
+icon-repeat = 🔁
+icon-repeatone = 🔂
+icon-consume = ✀
+
+; Used to display the state of random/repeat/repeatone
+; Only applies if <icon-[random|repeat|repeatone]> is used
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
+
+; Only applies if <bar-progress> is used
+bar-progress-width = 45
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+[module/reddit]
+type = custom/script
+exec = ~/.config/polybar/reddit
+interval = 60
+
 [module/i3]
 type = internal/i3
-pin-workspaces = true
+pin-workspaces = false
+strip-wsnumbers = true
 format = <label-state>
 label-focused = %icon%
 label-focused-foreground = ${colors.bg}
@@ -106,13 +184,14 @@ label-visible-padding = 1
 label-visible-foreground = ${colors.bg}
 label-visible-background = ${colors.fg}
 label-separator = |
-label-separator-padding = 2
+label-separator-padding = 1
 ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
-ws-icon-3 = 4;
+ws-icon-3 = 4;
 ws-icon-4 = 5;
-ws-icon-5 = 6;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
 
 [module/xwindow]
 type=internal/xwindow
@@ -139,7 +218,7 @@ ramp-foreground = ${colors.tempfg}
 
 [module/date]
 type=internal/date
-interval=1.0
+interval=2
 date=%a, %b %d
 time=%I:%M %p
 label=%date% %time%
@@ -148,6 +227,15 @@ format-padding=0
 label-background=${colors.datbg}
 label-foreground=${colors.datfg}
 label-padding= 1
+
+[module/utcdate]
+type=custom/script
+exec=TZ=UTC date +"%a, %b %d %I:%M %p"
+interval=2
+format=<label>
+label-background=${colors.datbg}
+label-foreground=${colors.datfg}
+label-padding=1
 
 [module/pulse]
 type = internal/pulseaudio
