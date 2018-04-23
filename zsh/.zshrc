@@ -113,3 +113,6 @@ doe () {
 # Unalias OMZ 'grv' for git browser https://github.com/rgburke/grv
 unalias grv
 alias vtop="vtop --theme wal"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
