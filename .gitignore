@@ -10,3 +10,5 @@ neofetch/
 oh-my-zsh/
 oomox/
 vim/.vim/plugged
+
+*.log
