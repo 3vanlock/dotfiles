@@ -59,21 +59,21 @@ tray-padding = 3
 monitor=HDMI-0
 modules-left= date padding network padding memory padding cpu padding temp
 modules-center= i3
-modules-right=pulse padding mpd padding
+modules-right=pulse padding spotify padding
 
 [bar/litel]
 inherit=bar/base
 monitor=HDMI-1
-modules-left= date padding reddit
+modules-left= date padding
 modules-center= i3
-modules-right=pulse padding
+modules-right=pulse padding spotify padding
 
 [bar/litec]
 inherit=bar/base
 monitor=DVI-D-0
 modules-left= date padding network padding filesystem 
 modules-center= i3
-modules-right=pulse padding mpd padding utcdate padding
+modules-right=pulse padding utcdate padding
 
 ;--------------------------------------------
 ; modules                                   ;
@@ -161,10 +161,6 @@ bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
 
-[module/reddit]
-type = custom/script
-exec = ~/.config/polybar/reddit
-interval = 60
 
 [module/i3]
 type = internal/i3
