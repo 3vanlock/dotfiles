@@ -12,20 +12,11 @@ Some things may not be inherently clear. The code is not highlighted and customi
 
 ### System
 
-* [Ubuntu](https://www.ubuntu.com)
+* [ubuntu 18.04](https://www.ubuntu.com)
   * Download the [netboot image](http://cdimage.ubuntu.com/netboot/)
-* [lightdm](https://wiki.ubuntu.com/LightDM)
+* [x server](https://www.x.org/wiki/XServer/)
 * [i3-gaps](https://github.com/Airblader/i3)
 * [polybar](https://github.com/jaagr/polybar)
-
-### Mail
-
-Followed [this guide](https://help.ubuntu.com/community/MuttAndGmail) to configure mutt client.
-
-* [fetchmail](http://www.fetchmail.info/)
-* [msmtp](http://manpages.ubuntu.com/manpages/trusty/man1/msmtp.1.html)
-* [mutt](http://www.mutt.org/)
-* [procmail](http://www.procmail.org/)
 
 ### Chat
 
@@ -40,7 +31,7 @@ Followed [this guide](https://help.ubuntu.com/community/MuttAndGmail) to configu
 
 ### Editor
 
-* [atom](https://atom.io/)
+* [vs code](https://code.visualstudio.com/docs/setup/linux)
 * [vim](https://www.vim.org)
   * Colors via [pywal](https://github.com/dylanaraps/pywal/wiki/Customization#vim)
   * Plugins handled via [vim-plug](https://github.com/junegunn/vim-plug)
@@ -57,12 +48,18 @@ Followed [this guide](https://help.ubuntu.com/community/MuttAndGmail) to configu
 * [zsh](https://www.zsh.org/)
 * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
-### Utilities
+### Python
 
 * [pyenv](https://github.com/pyenv/pyenv)
 * [pipenv](https://github.com/pypa/pipenv)
 * [streamlink](https://github.com/streamlink/streamlink)
+
+### Node 
+
 * [vtop](https://github.com/MrRio/vtop)
+
+### Ruby
+* [rvm](https://rvm.io/)
 
 ## Install
 
@@ -83,10 +80,6 @@ You can selectively `stow` any directory you plan to use or use all configuratio
 * Remove absolute references
   * Clean and centralize PATH creation
   * Reference directories by their relative path
-* Add secrets file to allow including personal configurations
-  * fetchmail
-  * irssi
-  * msmtp
 * Create shell script to deploy 'requirements' folder
   * pip
   * npm
