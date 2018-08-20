@@ -63,6 +63,8 @@ ZSH_THEME="ys"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-completions
+  zsh-autosuggestions
   ssh-agent
 )
 
@@ -116,3 +118,6 @@ alias vtop="vtop --theme wal"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# ZSH Completions
+autoload -U compinit && compinit
