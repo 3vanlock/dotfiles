@@ -41,9 +41,9 @@ height=14
 foreground=${colors.fg}
 background=${colors.bg}
 border-top-size=3
-border-top-color= ${colors.bg}
+border-top-color=${colors.bg}
 border-bottom-size=3
-border-bottom-color= ${colors.bg}
+border-bottom-color=${colors.bg}
 bottom=True
 padding-left=1
 padding-right=0
@@ -55,44 +55,44 @@ font-1=FontAwesome:pixelsize=10;3
 [bar/litel]
 inherit=bar/base
 tray-position=right
-tray-padding = 3
-monitor=HDMI-0
-modules-left= pulse padding
-modules-center= i3
-modules-right= date padding
+tray-padding =3
+monitor=HDMI-1
+modules-right=pulse padding
+modules-center=i3
+modules-left=date padding
 
 [bar/liter]
 inherit=bar/base
-monitor=HDMI-1
-modules-left= date padding 
-modules-center= i3
-modules-right= pulse padding 
+monitor=HDMI-0
+modules-right=date padding 
+modules-center=i3
+modules-left=pulse padding 
 
 [bar/litec]
 inherit=bar/base
 monitor=DVI-D-0
-modules-left= network padding filesystem 
-modules-center= i3
-modules-right= cpu padding memory padding temp padding
+modules-left=network padding filesystem 
+modules-center=i3
+modules-right=cpu padding memory padding temp padding
 
 ;--------------------------------------------
 ; modules                                   ;
 ;--------------------------------------------
 [module/spotify]
-type = custom/script
-exec = ~/.config/polybar/spotify
-interval = 2
-label-foreground = ${colors.bg}
-label-background = ${colors.c3}
+type =custom/script
+exec =~/.config/polybar/spotify
+interval =2
+label-foreground =${colors.bg}
+label-background =${colors.c3}
 label-padding=1
-click-left = zsh -c "playerctl play-pause"
-click-middle = zsh -c "playerctl previous"
-click-right = zsh -c "playerctl next"
+click-left =zsh -c "playerctl play-pause"
+click-middle =zsh -c "playerctl previous"
+click-right =zsh -c "playerctl next"
 
 [module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
+type =internal/mpd
+host =127.0.0.1
+port =6600
 ; Available tags:
 ;   <label-song> (default)
 ;   <label-time>
@@ -110,14 +110,14 @@ port = 6600
 ;   <icon-next>
 ;   <icon-seekb>
 ;   <icon-seekf>
-format-online = <label-time> <label-song> <icon-prev> <icon-stop> <toggle> <icon-next> 
-;format-playing = ${self.format-online}
-;format-paused = ${self.format-online}
-;format-stopped = ${self.format-online}
+format-online =<label-time> <label-song> <icon-prev> <icon-stop> <toggle> <icon-next> 
+;format-playing =${self.format-online}
+;format-paused =${self.format-online}
+;format-stopped =${self.format-online}
 
 ; Available tags:
 ;   <label-offline>
-;format-offline = <label-offline>
+;format-offline =<label-offline>
 
 ; Available tokens:
 ;   %artist%
@@ -125,69 +125,69 @@ format-online = <label-time> <label-song> <icon-prev> <icon-stop> <toggle> <icon
 ;   %date%
 ;   %title%
 ; Default: %artist% - %title%
-label-song =  %artist% - %title%
+label-song = %artist% - %title%
 
 ; Available tokens:
 ;   %elapsed%
 ;   %total%
 ; Default: %elapsed% / %total%
-;label-time = %elapsed% / %total%
+;label-time =%elapsed% / %total%
 
 ; Available tokens:
 ;   None
-label-offline = offline
+label-offline =offline
 
 ; Only applies if <icon-X> is used
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-seekb = 
-icon-seekf = 
-icon-random = 
-icon-repeat = 🔁
-icon-repeatone = 🔂
-icon-consume = ✀
+icon-play =
+icon-pause =
+icon-stop =
+icon-prev =
+icon-next =
+icon-seekb =
+icon-seekf =
+icon-random =
+icon-repeat =🔁
+icon-repeatone =🔂
+icon-consume =✀
 
 ; Used to display the state of random/repeat/repeatone
 ; Only applies if <icon-[random|repeat|repeatone]> is used
-toggle-on-foreground = #ff
-toggle-off-foreground = #55
+toggle-on-foreground =#ff
+toggle-off-foreground =#55
 
 ; Only applies if <bar-progress> is used
-bar-progress-width = 45
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
+bar-progress-width =45
+bar-progress-indicator =|
+bar-progress-fill =─
+bar-progress-empty =─
 
 
 [module/i3]
-type = internal/i3
-pin-workspaces = false
-strip-wsnumbers = true
-format = <label-state>
-label-focused = %icon%
-label-focused-foreground = ${colors.bg}
-label-focused-background =  ${colors.c3}
-label-focused-padding = 1
-label-unfocused = %icon%
-label-unfocused-padding = 1
-label-unfocused-foreground = ${colors.fg}
-label-unfocused-background = ${colors.bg}
-label-visible = %icon%
-label-visible-padding = 1
-label-visible-foreground = ${colors.bg}
-label-visible-background = ${colors.fg}
-label-separator = |
-label-separator-padding = 1
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
+type =internal/i3
+pin-workspaces =false
+strip-wsnumbers =true
+format =<label-state>
+label-focused =%icon%
+label-focused-foreground =${colors.bg}
+label-focused-background = ${colors.c3}
+label-focused-padding =1
+label-unfocused =%icon%
+label-unfocused-padding =1
+label-unfocused-foreground =${colors.fg}
+label-unfocused-background =${colors.bg}
+label-visible =%icon%
+label-visible-padding =1
+label-visible-foreground =${colors.bg}
+label-visible-background =${colors.fg}
+label-separator =|
+label-separator-padding =1
+ws-icon-0 =1;
+ws-icon-1 =2;
+ws-icon-2 =3;
+ws-icon-3 =4;
+ws-icon-4 =5;
+ws-icon-5 =6;
+ws-icon-6 =7;
 
 [module/xwindow]
 type=internal/xwindow
@@ -196,21 +196,21 @@ label-foreground=${colors.winbg}
 label-background=${colors.winfg}
 
 [module/temp]
-type = internal/temperature
-interval = 1
-format = <ramp><label>
-label = %temperature%
-label-background = ${colors.tempbg}
-label-foreground = ${colors.tempfg}
-label-padding = 1
-format-warn = <ramp><label-warn>
-label-warn = %temperature%
-label-warn-foreground = ${colors.tempfg}
-label-warn-background = ${colors.c1}
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.tempfg}
+type =internal/temperature
+interval =1
+format =<ramp><label>
+label =%temperature%
+label-background =${colors.tempbg}
+label-foreground =${colors.tempfg}
+label-padding =1
+format-warn =<ramp><label-warn>
+label-warn =%temperature%
+label-warn-foreground =${colors.tempfg}
+label-warn-background =${colors.c1}
+ramp-0 =
+ramp-1 =
+ramp-2 =
+ramp-foreground =${colors.tempfg}
 
 [module/date]
 type=internal/date
@@ -222,7 +222,7 @@ format=<label>
 format-padding=0
 label-background=${colors.datbg}
 label-foreground=${colors.datfg}
-label-padding= 1
+label-padding=1
 
 [module/utcdate]
 type=custom/script
@@ -234,17 +234,17 @@ label-foreground=${colors.datfg}
 label-padding=1
 
 [module/pulse]
-type = internal/pulseaudio
+type =internal/pulseaudio
 sink=alsa_output.usb-Binary_Audio_UAC1_DAC-01.analog-stereo
 format-volume =<label-volume> <ramp-volume>
 format-muted =<label-muted>
 label-volume=%percentage%
-label-volume-foreground = ${colors.volfg}
+label-volume-foreground =${colors.volfg}
 label-muted=muted
-label-muted-foreground = ${colors.volfg}
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+label-muted-foreground =${colors.volfg}
+ramp-volume-0 =
+ramp-volume-1 =
+ramp-volume-2 =
 
 [module/cpu]
 type=internal/cpu
@@ -255,13 +255,13 @@ label-background=${colors.cpubg}
 label-foreground=${colors.cpufg}
 
 [module/memory]
-type = internal/memory
-interval = 3
+type =internal/memory
+interval =3
 label-background=${colors.membg}
 label-foreground=${colors.memfg}
-format = <label>
-label =  %gb_used%
-label-padding = 1
+format =<label>
+label = %gb_used%
+label-padding =1
 
 [module/network]
 type=internal/network
@@ -278,15 +278,15 @@ label-disconnected-padding=1
 label-disconnected=
 
 [module/filesystem]
-type = internal/fs
-mount-0 = /
-mount-1 = /nfs/Media
-interval = 10
-format-mounted = <label-mounted>
-label-mounted =  %mountpoint%: %free%
-label-mounted-foreground = ${colors.fsfg}
-label-mounted-background = ${colors.fsbg}
-label-unmounted =  %mountpoint%: 
+type =internal/fs
+mount-0 =/
+mount-1 =/nfs/Media
+interval =10
+format-mounted =<label-mounted>
+label-mounted = %mountpoint%: %free%
+label-mounted-foreground =${colors.fsfg}
+label-mounted-background =${colors.fsbg}
+label-unmounted = %mountpoint%: 
 
 [module/padding]
 type=custom/text
