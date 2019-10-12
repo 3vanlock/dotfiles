@@ -54,26 +54,26 @@ font-1=FontAwesome:pixelsize=10;3
 
 [bar/litel]
 inherit=bar/base
-tray-position=right
-tray-padding =3
-monitor=HDMI-1
-modules-right=pulse padding
+monitor=DP-1
+modules-right=date padding
 modules-center=i3
-modules-left=date padding
+modules-left=
 
 [bar/liter]
 inherit=bar/base
-monitor=HDMI-0
-modules-right=date padding 
+monitor=DP-3
+modules-right=
 modules-center=i3
-modules-left=pulse padding 
+modules-left=date padding
 
 [bar/litec]
 inherit=bar/base
-monitor=DVI-D-0
-modules-left=network padding filesystem 
+tray-position=left
+tray-padding=3
+monitor=HDMI-0
+modules-left=cpu padding memory padding temp padding
 modules-center=i3
-modules-right=cpu padding memory padding temp padding
+modules-right=pulse padding network padding
 
 ;--------------------------------------------
 ; modules                                   ;
@@ -181,13 +181,11 @@ label-visible-foreground =${colors.bg}
 label-visible-background =${colors.fg}
 label-separator =|
 label-separator-padding =1
-ws-icon-0 =1;
-ws-icon-1 =2;
-ws-icon-2 =3;
-ws-icon-3 =4;
-ws-icon-4 =5;
-ws-icon-5 =6;
-ws-icon-6 =7;
+ws-icon-0 =1;
+ws-icon-1 =2;
+ws-icon-2 =3;
+ws-icon-3 =4;
+ws-icon-4 =5;
 
 [module/xwindow]
 type=internal/xwindow
@@ -234,17 +232,17 @@ label-foreground=${colors.datfg}
 label-padding=1
 
 [module/pulse]
-type =internal/pulseaudio
-sink=alsa_output.usb-Binary_Audio_UAC1_DAC-01.analog-stereo
-format-volume =<label-volume> <ramp-volume>
-format-muted =<label-muted>
+type=internal/pulseaudio
+sink=alsa_output.usb-Schiit_Audio_Schiit_Modi_3-00.analog-stereo
+format-volume=<label-volume> <ramp-volume>
+format-muted=<label-muted>
 label-volume=%percentage%
-label-volume-foreground =${colors.volfg}
+label-volume-foreground=${colors.volfg}
 label-muted=muted
-label-muted-foreground =${colors.volfg}
-ramp-volume-0 =
-ramp-volume-1 =
-ramp-volume-2 =
+label-muted-foreground=${colors.volfg}
+ramp-volume-0=
+ramp-volume-1=
+ramp-volume-2=
 
 [module/cpu]
 type=internal/cpu
@@ -269,8 +267,9 @@ interface=enp4s0
 interval=3.0
 format-connected=<label-connected>
 label-connected= %local_ip%
-label-connected-background=${colors.netfg}
-label-connected-foreground=${colors.netbg}
+label-connected-background=${colors.netbg}
+label-connected-foreground=${colors.netfg}
+label-connected-padding=1
 format-disconnected=<label-disconnected>
 label-disconnected-background=${colors.netfg}
 label-disconnected-foreground=${colors.c1}

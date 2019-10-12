@@ -15,8 +15,6 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
 
 for_window [class="^.*"] border pixel 0
 smart_gaps on
